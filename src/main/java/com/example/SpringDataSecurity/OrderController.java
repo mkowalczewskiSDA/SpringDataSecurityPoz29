@@ -14,7 +14,7 @@ public class OrderController {
 
     @RequestMapping("/list")
     public String getOrders() {
-        orderRepository.findAll().forEach(order -> System.out.println(order.getTitle()));
+
         return null;
     }
 
