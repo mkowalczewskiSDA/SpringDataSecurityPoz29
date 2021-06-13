@@ -58,7 +58,7 @@ public class OrderController {
             model.addAttribute("pageNumbers", pageNumbers);
         }
 
-        return null;
+        return "index";
     }
 
 }
