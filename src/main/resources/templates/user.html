@@ -29,9 +29,9 @@
         </tr>
         </tbody>
     </table>
-    <div th:if="${orderPage.totalPages > 0}" class="pagination"
+    <div th:if="${portalUserPage.totalPages > 0}" class="pagination"
          th:each="pageNumber : ${pageNumbers}">
-        <a th:href="@{/order/paginated(page=${pageNumber},size=${size})}"
+        <a th:href="@{/user/list(page=${pageNumber},size=${size})}"
            th:text="${pageNumber}"></a>
     </div>
 </div>

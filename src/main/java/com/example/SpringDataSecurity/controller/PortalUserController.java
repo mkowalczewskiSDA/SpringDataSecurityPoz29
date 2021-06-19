@@ -34,7 +34,7 @@ public class PortalUserController {
         int currentSize = size.orElse(5);
 
         Page<PortalUser> portalUserPage = portalUserService.findAllPaginated(
-                PageRequest.of(currentPage, currentSize)
+                PageRequest.of(currentPage-1, currentSize)
         );
 
         model.addAttribute("size", currentSize);
@@ -48,6 +48,6 @@ public class PortalUserController {
             }
             model.addAttribute("pageNumbers", pageNumbers);
         }
-            return "users";
+            return "user";
     }
 }
