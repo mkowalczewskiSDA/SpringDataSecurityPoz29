@@ -12,4 +12,6 @@ public interface PortalUserService {
 
     Page<PortalUser> findByLastNameBeginsWith(String lastName, Pageable pageable);
 
+    void save(PortalUser portalUser);
+
 }
