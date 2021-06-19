@@ -8,4 +8,6 @@ public interface PortalUserService {
 
     Page<PortalUser> findAllPaginated(Pageable pageable);
 
+    Page<PortalUser> findByLastNameBeginsWith(String lastName, Pageable pageable);
+
 }

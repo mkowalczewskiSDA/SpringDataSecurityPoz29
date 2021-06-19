@@ -20,4 +20,9 @@ public class PortalUserServiceImpl implements PortalUserService {
         return userRepository.findAll(pageable);
     }
 
+    @Override
+    public Page<PortalUser> findByLastNameBeginsWith(String lastName, Pageable pageable) {
+        return userRepository.findByLastNameStartsWith(lastName, pageable);
+    }
+
 }
