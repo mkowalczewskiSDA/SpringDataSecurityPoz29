@@ -18,6 +18,11 @@ public class HomeController {
         return "home";
     }
 
+    @GetMapping("/login")
+    public String loginPage() {
+        return "login";
+    }
+
     @GetMapping("/admin/page")
     public String adminPage() {
         return "admin";
