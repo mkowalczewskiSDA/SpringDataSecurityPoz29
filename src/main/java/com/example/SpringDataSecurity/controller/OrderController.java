@@ -1,6 +1,7 @@
 package com.example.SpringDataSecurity.controller;
 
 import com.example.SpringDataSecurity.model.Order;
+import com.example.SpringDataSecurity.repository.UserRepository;
 import com.example.SpringDataSecurity.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,6 +24,9 @@ public class OrderController {
     @Autowired
     OrderService orderService;
 
+    @Autowired
+    UserRepository userRepository;
+
     @RequestMapping("/list")
     public String getOrders(Model model) {
         model.addAttribute("orders", orderService.getAllOrders());
@@ -34,6 +38,7 @@ public class OrderController {
                                      @RequestParam("page")Optional<Integer> page) {
         //aktualna strona na której znajduje się użytkownik
         int currentPage = page.orElse(1);
+        System.out.println(userRepository.findByEmail("maria.nowak@test.pl").getLastName());
         //pobieramy zamówienia - 5 sztuk, zaczynając od aktualnej strony - "-1" jest
         //dlatego że to jest kolekcja, a kolekcje zaczynają się od 0
         Page<Order> orderPage = orderService
