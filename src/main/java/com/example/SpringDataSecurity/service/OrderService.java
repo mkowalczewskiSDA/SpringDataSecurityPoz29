@@ -12,4 +12,6 @@ public interface OrderService {
 
     Page<Order> getOrdersPaginated(Pageable pageable);
 
+    Page<Order> getOrdersWithPriceLargerThan(double price, Pageable pageable);
+
 }

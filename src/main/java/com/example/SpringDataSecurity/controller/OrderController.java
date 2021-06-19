@@ -38,11 +38,45 @@ public class OrderController {
                                      @RequestParam("page")Optional<Integer> page) {
         //aktualna strona na której znajduje się użytkownik
         int currentPage = page.orElse(1);
-        System.out.println(userRepository.findByEmail("maria.nowak@test.pl").getLastName());
         //pobieramy zamówienia - 5 sztuk, zaczynając od aktualnej strony - "-1" jest
         //dlatego że to jest kolekcja, a kolekcje zaczynają się od 0
         Page<Order> orderPage = orderService
                 .getOrdersPaginated(
+                        PageRequest.of(currentPage-1, 5)
+                );
+
+        //dodajemy naszą stronę z 5 wierszami do widoku
+        model.addAttribute("orderPage", orderPage);
+
+        //pobieramy ilość dostępnych stron
+        int totalPages = orderPage.getTotalPages();
+        if (totalPages>0) {
+            /*List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+            .boxed()
+            .collect(Collectors.toList());   */
+            //tworzymy listę dostępnych stron i przekazujemy ją do widoku
+            List<Integer> pageNumbers = new ArrayList<>();
+            for(int i=1; i<=totalPages; i++) {
+                pageNumbers.add(i);
+            }
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
+
+        return "index";
+    }
+
+    @RequestMapping("/list/price")
+    public String getOrdersPaginated(Model model,
+                                     @RequestParam("page")Optional<Integer> page,
+                                     @RequestParam("greaterThan") int greaterThan) {
+        //aktualna strona na której znajduje się użytkownik
+        int currentPage = page.orElse(1);
+        System.out.println(userRepository.findByEmail("maria.nowak@test.pl").getLastName());
+        //pobieramy zamówienia - 5 sztuk, zaczynając od aktualnej strony - "-1" jest
+        //dlatego że to jest kolekcja, a kolekcje zaczynają się od 0
+        Page<Order> orderPage = orderService
+                .getOrdersWithPriceLargerThan(
+                        greaterThan,
                         PageRequest.of(currentPage-1, 5)
                 );
 

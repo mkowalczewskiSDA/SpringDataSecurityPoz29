@@ -24,4 +24,9 @@ public class OrderServiceImpl implements OrderService {
     public Page<Order> getOrdersPaginated(Pageable pageable) {
         return orderRepository.findAll(pageable);
     }
+
+    @Override
+    public Page<Order> getOrdersWithPriceLargerThan(double price, Pageable pageable) {
+        return orderRepository.findByPriceGreaterThan(price, pageable);
+    }
 }

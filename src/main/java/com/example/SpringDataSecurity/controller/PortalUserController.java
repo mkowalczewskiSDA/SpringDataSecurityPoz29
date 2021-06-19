@@ -50,4 +50,33 @@ public class PortalUserController {
         }
             return "user";
     }
+
+    @GetMapping("/list/lastName")
+    public String usersListByLastName(Model model,
+                            @RequestParam("page")Optional<Integer> page,
+                            @RequestParam("size")Optional<Integer> size,
+                            @RequestParam("startsWith") String startsWith
+    ) {
+
+        int currentPage = page.orElse(1);
+        int currentSize = size.orElse(5);
+
+        Page<PortalUser> portalUserPage = portalUserService.findByLastNameBeginsWith(
+                startsWith,
+                PageRequest.of(currentPage-1, currentSize)
+        );
+
+        model.addAttribute("size", currentSize);
+        model.addAttribute("portalUserPage", portalUserPage);
+
+        int totalPages = portalUserPage.getTotalPages();
+        if (totalPages>0) {
+            List<Integer> pageNumbers = new ArrayList<>();
+            for (int i = 1; i <= totalPages; i++) {
+                pageNumbers.add(i);
+            }
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
+        return "user";
+    }
 }
