@@ -22,6 +22,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Page<Order> getOrdersPaginated(Pageable pageable) {
+        System.out.println(orderRepository.findPriceSum());
         return orderRepository.findAll(pageable);
     }
 

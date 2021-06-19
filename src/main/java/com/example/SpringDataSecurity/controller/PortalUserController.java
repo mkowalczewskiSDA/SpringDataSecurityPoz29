@@ -51,6 +51,7 @@ public class PortalUserController {
             return "user";
     }
 
+    //np. localhost:8080/user/list/lastName?startsWith=N
     @GetMapping("/list/lastName")
     public String usersListByLastName(Model model,
                             @RequestParam("page")Optional<Integer> page,
