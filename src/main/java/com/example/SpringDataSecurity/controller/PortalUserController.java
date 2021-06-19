@@ -90,7 +90,7 @@ public class PortalUserController {
 
     @PostMapping("/register")
     public String registerUser(PortalUser portalUser) {
-
+        portalUserService.save(portalUser);
         return "redirect:/login";
     }
 }
