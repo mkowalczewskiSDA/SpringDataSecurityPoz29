@@ -16,6 +16,11 @@ public class PortalUserServiceImpl implements PortalUserService {
     }
 
     @Override
+    public PortalUser findByLogin(String login) {
+        return userRepository.findByLogin(login);
+    }
+
+    @Override
     public Page<PortalUser> findAllPaginated(Pageable pageable) {
         return userRepository.findAll(pageable);
     }

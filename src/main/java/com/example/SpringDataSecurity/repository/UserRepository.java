@@ -10,4 +10,6 @@ public interface UserRepository extends JpaRepository<PortalUser, Integer> {
 
     Page<PortalUser> findByLastNameStartsWith(String lastName, Pageable pageable);
 
+    PortalUser findByLogin(String login);
+
 }
