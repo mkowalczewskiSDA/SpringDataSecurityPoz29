@@ -47,7 +47,7 @@ public class PortalUserServiceImpl implements PortalUserService {
     public void save(PortalUser portalUser) {
         portalUser.setPassword(passwordEncoder.encode(portalUser.getPassword()));
         Set<Role> roles = new HashSet<>();
-        roles.add(roleRepository.findByName("USER"));
+        roles.add(new Role(4,"USER"));
         portalUser.setRoles(roles);
         userRepository.save(portalUser);
     }

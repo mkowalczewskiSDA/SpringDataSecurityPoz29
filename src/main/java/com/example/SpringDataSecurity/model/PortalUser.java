@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
 import java.util.Set;
 
 @Entity
@@ -24,8 +26,10 @@ public class PortalUser {
     @Column(name = "PU_LASTNAME")
     private String lastName;
     @Column(name = "PU_EMAIL")
+    @Email
     private String email;
     @Column(name = "PU_PASSWORD")
+    @Min(7)
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "portal_user_roles",
