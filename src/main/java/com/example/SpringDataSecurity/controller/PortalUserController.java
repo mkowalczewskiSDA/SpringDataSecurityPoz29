@@ -93,6 +93,9 @@ public class PortalUserController {
     @PostMapping("/register")
     public String registerUser(@Valid PortalUser portalUser,
                                BindingResult result) {
+        if(portalUserService.findByLogin(portalUser.getLogin()) != null) {
+            result.rejectValue("login", "Duplicate.portalUser.login");
+        }
         if (result.hasErrors()) {
             return "register";
         } else {

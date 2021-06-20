@@ -22,7 +22,7 @@
                                required="true"
                                autofocus="true">
                         <span th:if="${#fields.hasErrors('login')}"
-                              th:errors="${login}"
+                              th:errors="*{login}"
                               class="text-danger">
                             Login Error
                         </span>
@@ -33,7 +33,7 @@
                                placeholder="Email"
                                required="true">
                         <span th:if="${#fields.hasErrors('email')}"
-                              th:errors="${email}"
+                              th:errors="*{email}"
                               class="text-danger">
                             Email Error
                         </span>
@@ -44,7 +44,7 @@
                                placeholder="First Name"
                                required="true">
                         <span th:if="${#fields.hasErrors('firstName')}"
-                              th:errors="${firstName}"
+                              th:errors="*{firstName}"
                               class="text-danger">
                             Firt Name Error
                         </span>
@@ -55,7 +55,7 @@
                                placeholder="Last Name"
                                required="true">
                         <span th:if="${#fields.hasErrors('lastName')}"
-                              th:errors="${lastName}"
+                              th:errors="*{lastName}"
                               class="text-danger">
                             Last Name Error
                         </span>
@@ -66,7 +66,7 @@
                                placeholder="Password"
                                required="true">
                         <span th:if="${#fields.hasErrors('password')}"
-                              th:errors="${password}"
+                              th:errors="*{password}"
                               class="text-danger">
                             Password Error
                         </span>
