@@ -29,7 +29,6 @@ public class PortalUser {
     @Email
     private String email;
     @Column(name = "PU_PASSWORD")
-    @Min(7)
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "portal_user_roles",

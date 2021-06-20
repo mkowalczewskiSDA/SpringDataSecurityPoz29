@@ -1,5 +1,6 @@
 package com.example.SpringDataSecurity.controller;
 
+import com.example.SpringDataSecurity.model.PortalUser;
 import com.example.SpringDataSecurity.service.PortalUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PostAuthorize;
@@ -12,10 +13,13 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.util.Collection;
 
 @Controller
@@ -74,6 +78,16 @@ public class HomeController {
         model.addAttribute(
                 "portalUser",
                 userService.findByLogin(user.getUsername()));
+        return "details";
+    }
+
+    //Przychodzi portal user z emailem i loginem
+    @PostMapping("/details")
+    public String saveEmail(PortalUser portalUser, Model model) {
+        PortalUser tempPortalUser = userService.findByLogin(portalUser.getLogin());
+        tempPortalUser.setEmail(portalUser.getEmail());
+        userService.update(tempPortalUser);
+        model.addAttribute("portalUser", tempPortalUser);
         return "details";
     }
 }

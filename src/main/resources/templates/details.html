@@ -30,6 +30,39 @@
     </div>
 </div>
 
+<div th:fragment="emailModal" class="modal fade" id="emailModal" role="dialog">
+    <div class="modal-dialog">
+        <form method="post" th:action="@{/details}" th:object="${portalUser}"
+              class="form-control">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"/>
+                    <h4 class="modal-title">Edit Email</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" th:field="*{login}">
+                    <input type="text" th:field="*{email}"/>
+                    <span th:if="${#fields.hasErrors('email')}"
+                          th:errors="*{email}"
+                          class="text-danger">
+                            Email Error
+                        </span>
+                </div>
+                <div class="modal-footer">
+                    <button id="submitEditEmail"
+                            class="btn btn-lg btn-primary btn-block"
+                            type="submit">
+                        Submit
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 <div th:replace="fragments/footer :: footer" />
 </body>
 </html>

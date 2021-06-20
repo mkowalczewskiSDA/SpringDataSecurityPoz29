@@ -96,6 +96,9 @@ public class PortalUserController {
         if(portalUserService.findByLogin(portalUser.getLogin()) != null) {
             result.rejectValue("login", "Duplicate.portalUser.login");
         }
+        if (portalUser.getPassword().length() < 8) {
+            result.rejectValue("password", "Min.portalUser.password");
+        }
         if (result.hasErrors()) {
             return "register";
         } else {

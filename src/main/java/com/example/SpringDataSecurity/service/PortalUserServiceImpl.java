@@ -52,4 +52,9 @@ public class PortalUserServiceImpl implements PortalUserService {
         userRepository.save(portalUser);
     }
 
+    @Override
+    public void update(PortalUser portalUser) {
+        userRepository.save(portalUser);
+    }
+
 }

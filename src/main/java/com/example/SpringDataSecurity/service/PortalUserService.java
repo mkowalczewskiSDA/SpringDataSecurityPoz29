@@ -14,4 +14,6 @@ public interface PortalUserService {
 
     void save(PortalUser portalUser);
 
+    void update(PortalUser portalUser);
+
 }
